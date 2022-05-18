@@ -1,0 +1,11 @@
+body {
+color: yellow;
+background-color: navy;
+}
+
+@media screen and (max-width: 700px){
+body{
+color: white;
+background-color: purple;
+}
+}
