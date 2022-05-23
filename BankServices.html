@@ -3,6 +3,137 @@
 <head>
 <title>Our Bank : Services</title>
 <link rel="stylesheet" href="cssbg.css">
+<script>
+			var flag1 = true;
+			var flag2= true;
+function calcMaturity()
+{
+
+var roi1 = document.f2.t4.value
+var dur1 = document.f2.t3.value
+var amt1 = document.f2.t2.value
+var mat =  ((roi1*dur1*amt1)/100)
+mat = Number(mat) + Number(amt1)
+document.f2.t5.value = mat
+}
+
+
+
+function typeChange()
+{
+
+if(document.f1.t3.value=="S"){
+alert("Select the correct type of Loan");
+document.f1.t4.value=""
+}
+if(document.f1.t3.value=="C"){
+document.f1.t4.value=9;
+}
+if(document.f1.t3.value=="H"){
+document.f1.t4.value=7;
+}
+if(document.f1.t3.value=="P"){
+document.f1.t4.value=12;
+}
+}
+
+function durationEntered()
+{
+
+/*if(document.f1.t3.value=="C"){
+if(document.f1.t4.value>7){
+document.f1.t5.value="";
+document.f1.t6.value="";
+alert("Cant be more than 7 years")
+}
+}
+if(document.f1.t3.value=="H"){
+if(document.f1.t4.value>25){
+document.f1.t5.value="";
+document.f1.t6.value="";
+alert("Cant be more than 25 years")
+}
+}
+if(document.f1.t3.value=="P"){
+if(document.f1.t4.value>5){
+document.f1.t5.value="";
+document.f1.t6.value="";
+alert("Cant be more than 5 years")
+}
+} */
+
+var roi = document.f1.t4.value
+var dur = document.f1.t5.value
+var amt = document.f1.t2.value
+var emi = ((amt*dur*roi)/100 )/12
+document.f1.t6.value=emi
+}
+			function displayLoan()
+			{
+				if(flag1)
+				{
+					var str = 	`<h2>Please Enter Loan Details</h2>
+							<form name="f1">
+							<h3>
+								Applicant : <input type="text" name="t1"><br>
+								Amount : <input type="number" name="t2"><br>
+Type : <select name="t3" onChange="typeChange()">
+<option value="S">Select</option>
+<option value="C">Car</option>
+<option value="H">Home</option>
+<option value="P">Personal</option>
+</select>
+<br>
+ROI : <input type="number" name="t4" disabled><br>
+Duration (in years) : <input type="number" name="t5" onChange="durationEntered()"><br>
+EMI : <input type="number" name="t6" disabled><br>
+								<br>
+								<input type="reset" value="RESET">
+							</h3>
+							</form>`
+
+					document.getElementById("d1").innerHTML = str;
+					document.getElementById("l1").innerText = "HIDE Loan Form";
+					document.getElementById("l1").style.color = "red";
+				}
+				else
+				{
+					document.getElementById("d1").innerHTML = "";
+					document.getElementById("l1").innerText = "Loan Services";
+					document.getElementById("l1").style.color = "red";
+				}
+				flag1 = !flag1;
+			}
+
+			function displayDeposit()
+			{
+				if(flag2)
+				{
+					var str1 = 	`<h2>Please Enter Deposit Details</h2>
+							<form name="f2">
+							Applicant : <input type="text" name="t1"><br>
+								Amount : <input type="number" name="t2"><br>
+Duration (in years) : <input type="number" name="t3"><br>
+ROI : <input type="number" name="t4" onChange="calcMaturity()"><br>
+Maturity : <input type="number" name="t5" disabled><br>
+								<br>
+								<input type="reset" value="RESET">
+							</h3>
+							</form>`
+
+					document.getElementById("d2").innerHTML = str1;
+					document.getElementById("l2").innerText = "HIDE Deposit Form";
+					document.getElementById("l2").style.color = "red";
+				}
+				else
+				{
+					document.getElementById("d2").innerHTML = "";
+					document.getElementById("l2").innerText = "Deposit Services";
+					document.getElementById("l2").style.color = "red";
+				}
+				flag2 = !flag2;
+			}
+		</script>
 </head>
 <body>
 <h1 align=center>Services</h1>
@@ -10,8 +141,6 @@
 <h4>We provide our services in </h4>
 <ul type="square">
 <li>Credit Card Services
-<li>Loan Services
-<li>Deposits
 <li>Investments
 <li>Cheques & Demand Drafts
 <li>Fund Transfers
@@ -20,6 +149,13 @@
 <li>Forex Services
 </ul>
 <hr>
+<h4 onClick="displayLoan()" id="l1" style="color:red">Loan Services </h4>
+<div id="d1">
+</div> 
+<hr>
+<h4 onClick="displayDeposit()" id="l2" style="color:red">Deposits Services </h4>
+<div id="d2">
+</div>
 <hr>
 <marquee> Due to maintenance, our Corporate Banking services portal will be unavailable on 19 May 2022 from 12:00AM to 03:00 AM.</marquee>
 <hr>
